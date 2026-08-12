@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/industry-07fccb0f-e801-4bf6-baeb-16b190fec1b3/styles.css">
+<script src="_ds/industry-07fccb0f-e801-4bf6-baeb-16b190fec1b3/_ds_bundle.js"></script>
+<style>
+body{margin:0;background:#e2e3e4;font-family:"Barlow",system-ui,sans-serif}
+a{color:#41618010;color:var(--color-accent);text-decoration:none}
+a:hover{color:var(--color-accent-700)}
+input,select,button,textarea{font-family:inherit}
+::-webkit-scrollbar{width:0;height:0}
+.amara-dark{
+--color-bg:#191c1e;--color-surface:#23272a;--color-text:#eceff1;
+--color-divider:rgba(236,239,241,.20);
+--color-neutral-600:#9fa3a6;--color-neutral-700:#c3c7ca;
+--color-accent-700:#94bce3;
+}
+.amara-dark .blueprint>.corner{color:rgba(236,239,241,.6)}
+</style>
+</helmet>
+<div style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:28px">
+<x-import component-from-global-scope="AndroidDevice" from="./android-frame.jsx" dark="{{isDark}}" hint-size="412px,892px">
+
+<div class="{{shellClass}}" style="height:100%;display:flex;flex-direction:column;background:var(--color-bg);color:var(--color-text)">
+
+<div style="flex:none;padding:12px 16px 10px 16px;background:var(--color-bg);border-bottom:1px solid var(--color-divider)">
+<div style="display:flex;align-items:flex-end;gap:8px">
+<div style="flex:1;min-width:0">
+<div style="font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--color-accent-700)">Amara <span style="color:#9c4a0f">24/7</span></div>
+<div style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:25px;line-height:1.05;letter-spacing:-.01em">{{screenTitle}}</div>
+</div>
+<div style="display:flex;gap:6px;align-items:center">
+<sc-if value="{{offline}}" hint-placeholder-val="{{false}}">
+<span class="tag tag-neutral" style="font-size:9.5px;letter-spacing:.08em;text-transform:uppercase">Offline</span>
+</sc-if>
+<button class="btn btn-secondary" onClick="{{clearAll}}" title="Clear all entries" style="height:34px;width:34px;padding:0;display:flex;align-items:center;justify-content:center">
+<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11.5A8 8 0 1 0 18 17"></path><path d="M20 5v6h-6"></path></svg>
+</button>
+<button class="btn btn-secondary" onClick="{{toggleTheme}}" title="{{themeLabel}}" style="height:34px;width:34px;padding:0;display:flex;align-items:center;justify-content:center">
+<sc-if value="{{isDark}}" hint-placeholder-val="{{false}}">
+<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
+</sc-if>
+<sc-if value="{{isLight}}" hint-placeholder-val="{{true}}">
+<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"></path></svg>
+</sc-if>
+</button>
+<button class="btn btn-secondary" onClick="{{openShare}}" style="height:34px;padding:0 10px;font-size:12px;letter-spacing:.06em;text-transform:uppercase">Share</button>
+</div>
+</div>
+</div>
+
+<div style="flex:1;min-height:0;overflow:auto;-webkit-overflow-scrolling:touch">
+
+<sc-if value="{{isOnboarding}}" hint-placeholder-val="{{false}}">
+<div style="padding:26px 20px 30px;display:flex;flex-direction:column;gap:22px">
+<div class="blueprint" style="padding:22px 18px;color:#f2f2f3;background-color:var(--color-accent-900);background-image:linear-gradient(rgba(242,242,243,.10) 1px,transparent 1px),linear-gradient(90deg,rgba(242,242,243,.10) 1px,transparent 1px);background-size:26px 26px">
+<i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+<div style="font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;opacity:.85">Amara <span style="color:#f0a165">24/7</span> — route costing</div>
+<div style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:34px;line-height:1;margin-top:10px">Does this route<br>make money?</div>
+<p style="margin:12px 0 0;font-size:13.5px;line-height:1.5;opacity:.85">Set the rig and the cost base once with your own figures. Every route you add is then costed on the same base, ranked by margin, and ready to send to the client.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:14px">
+<div style="display:flex;gap:12px;align-items:flex-start">
+<div style="width:26px;height:26px;flex:none;border:1px solid var(--color-divider);display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-size:14px;color:var(--color-accent-700)">1</div>
+<div><div style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:17px">Load the rig</div><div style="font-size:13px;color:var(--color-neutral-700);line-height:1.45">Truck, trailer and diesel price set the consumption baseline.</div></div>
+</div>
+<div style="display:flex;gap:12px;align-items:flex-start">
+<div style="width:26px;height:26px;flex:none;border:1px solid var(--color-divider);display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-size:14px;color:var(--color-accent-700)">2</div>
+<div><div style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:17px">Add the routes</div><div style="font-size:13px;color:var(--color-neutral-700);line-height:1.45">Round trip, tolls, rate per ton and terrain — that is all a route needs.</div></div>
+</div>
+<div style="display:flex;gap:12px;align-items:flex-start">
+<div style="width:26px;height:26px;flex:none;border:1px solid var(--color-divider);display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-size:14px;color:var(--color-accent-700)">3</div>
+<div><div style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:17px">Read the docket</div><div style="font-size:13px;color:var(--color-neutral-700);line-height:1.45">Margin, net profit, break-even rate and whether the cycle time is even possible.</div></div>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:9px">
+<button class="btn btn-primary" onClick="{{startBlank}}" style="height:50px;font-size:15px;letter-spacing:.06em;text-transform:uppercase">Set up the cost base</button>
+<button class="btn btn-secondary" onClick="{{startDemo}}" style="height:46px;font-size:14px;letter-spacing:.06em;text-transform:uppercase">Add our route names first</button>
+</div>
+<p style="margin:0;font-size:11px;line-height:1.5;color:var(--color-neutral-600)">Planning estimate, excluding VAT and tax. Consumption baselines are planning figures for a laden 34 t combination — replace them with your own fuel data.</p>
+</div>
+</sc-if>
+
+<sc-if value="{{isHome}}" hint-placeholder-val="{{false}}">
+<div style="padding:16px 16px 24px;display:flex;flex-direction:column;gap:16px">
+<div class="blueprint" style="padding:16px 16px 18px;background-image:linear-gradient(rgba(89,128,166,.09) 1px,transparent 1px),linear-gradient(90deg,rgba(89,128,166,.09) 1px,transparent 1px);background-size:24px 24px">
+<i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+<div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px">
+<div style="font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--color-accent-700)">Best route on the board</div>
+<div style="font-size:11px;color:var(--color-neutral-600)">{{routeCount}}</div>
+</div>
+<div style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:19px;line-height:1.15;margin-top:6px">{{bestName}}</div>
+<div style="display:flex;align-items:center;gap:16px;margin-top:14px">
+<div style="position:relative;width:124px;height:124px;flex:none">
+<svg width="124" height="124" viewBox="0 0 124 124" style="display:block;transform:rotate(-90deg)">
+<circle cx="62" cy="62" r="52" fill="none" stroke="rgba(128,132,136,.35)" stroke-width="1"></circle>
+<circle cx="62" cy="62" r="44" fill="none" stroke="rgba(128,132,136,.28)" stroke-width="1"></circle>
+<circle cx="62" cy="62" r="48" fill="none" stroke="rgba(128,132,136,.22)" stroke-width="9"></circle>
+<circle cx="62" cy="62" r="48" fill="none" stroke="{{gaugeColor}}" stroke-width="9" stroke-dasharray="{{gaugeDash}}"></circle>
+</svg>
+<div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center">
+<div style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:33px;line-height:.9;letter-spacing:-.02em;color:{{bestColor}}">{{bestMargin}}</div>
+<div style="font-size:8.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--color-neutral-600);margin-top:3px">Margin</div>
+</div>
+</div>
+<div style="flex:1;min-width:0">
+<div style="font-size:26px;font-variant-numeric:tabular-nums;line-height:1;color:{{bestColor}}">{{bestNet}}</div>
+<div style="font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--color-neutral-600);margin-top:5px">Net per month</div>
+<div style="height:1px;background:var(--color-divider);margin:11px 0"></div>
+<div style="font-size:15px;font-variant-numeric:tabular-nums;line-height:1">{{bestCpk}}</div>
+<div style="font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--color-neutral-600);margin-top:3px">Cost per km</div>
+</div>
+</div>
+</div>
+
+<div style="border:1px solid var(--color-divider);padding:12px">
+<div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px">
+<div style="font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--color-neutral-600)">Cost base completeness</div>
+<div style="font-size:11px;font-variant-numeric:tabular-nums;color:var(--color-accent-700)">{{setupLabel}}</div>
+</div>
+<div style="display:flex;gap:3px;margin-top:9px">
+<sc-for list="{{setupTicks}}" as="t" hint-placeholder-count="7">
+<span style="flex:1;height:10px;background:{{t.fill}};border:1px solid {{t.border}}"></span>
+</sc-for>
+</div>
+<button class="btn btn-ghost" onClick="{{goSetup}}" style="margin-top:8px;font-size:11.5px;letter-spacing:.07em;text-transform:uppercase;padding:0">{{setupCta}} →</button>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--color-divider);border:1px solid var(--color-divider)">
+<div style="background:var(--color-bg);padding:11px 12px"><div style="font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--color-neutral-600)">Diesel</div><div style="font-size:18px;font-variant-numeric:tabular-nums">{{dieselPrice}}</div></div>
+<div style="background:var(--color-bg);padding:11px 12px"><div style="font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--color-neutral-600)">Loads a month</div><div style="font-size:18px;font-variant-numeric:tabular-nums">{{loadsLabel}}</div></div>
+<div style="background:var(--color-bg);padding:11px 12px"><div style="font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--color-neutral-600)">Rig</div><div style="font-size:13.5px;line-height:1.3;margin-top:2px">{{rigName}}</div></div>
+<div style="background:var(--color-bg);padding:11px 12px"><div style="font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--color-neutral-600)">Client</div><div style="font-size:13.5px;line-height:1.3;margin-top:2px">{{clientName}}</div></div>
+</div>
+
+<div>
+<div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px">
+<div style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:17px;letter-spacing:.02em;text-transform:uppercase">Routes on the board</div>
+<button class="btn btn-ghost" onClick="{{goRoutes}}" style="font-size:12px;letter-spacing:.06em;text-transform:uppercase">Edit</button>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px">
+<sc-for list="{{ranked}}" as="row" hint-placeholder-count="4">
+<button onClick="{{row.open}}" style="text-align:left;width:100%;border:1px solid var(--color-divider);border-left:3px solid {{row.lead}};background:{{row.bg}};padding:11px 12px;display:flex;gap:12px;align-items:center;cursor:pointer">
+<div style="font-family:'Barlow Condensed',sans-serif;font-size:15px;color:var(--color-neutral-600);width:16px">{{row.rank}}</div>
+<div style="flex:1;min-width:0">
+<div style="font-size:13.5px;line-height:1.25;font-weight:500">{{row.name}}</div>
+<div style="font-size:11px;color:var(--color-neutral-600);margin-top:2px;font-variant-numeric:tabular-nums">{{row.sub}}</div>
+<div style="height:5px;margin-top:6px;background:rgba(128,132,136,.22)"><span style="display:block;height:100%;width:{{row.barW}};background:{{row.barFill}}"></span></div>
+</div>
+<div style="text-align:right">
+<div style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:20px;line-height:1;color:{{row.color}}">{{row.margin}}</div>
+<div style="font-size:11px;color:var(--color-neutral-600);font-variant-numeric:tabular-nums;margin-top:3px">{{row.net}}</div>
+</div>
+</button>
+</sc-for>
+</div>
+</div>
+
+<button class="btn btn-primary btn-block" onClick="{{addRoute}}" style="height:48px;font-size:14px;letter-spacing:.07em;text-transform:uppercase">+ New route costing</button>
+</div>
+</sc-if>
+
+<sc-if value="{{isDocket}}" hint-placeholder-val="{{false}}">
+<div style="padding:16px 16px 24px;display:flex;flex-direction:column;gap:16px">
+<div style="display:flex;gap:6px;overflow:auto;padding-bottom:2px">
+<sc-for list="{{routeTabs}}" as="t" hint-placeholder-count="4">
+<button onClick="{{t.pick}}" style="flex:none;border:1px solid {{t.border}};background:{{t.bg}};color:{{t.fg}};padding:7px 11px;font-size:12px;cursor:pointer;white-space:nowrap">{{t.name}}</button>
+</sc-for>
+</div>
+
+<div class="blueprint" style="padding:18px 16px">
+<i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+<div style="font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--color-accent-700)">{{verdictLabel}}</div>
+<div style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:62px;line-height:.86;letter-spacing:-.025em;margin-top:8px;color:{{netColor}}">{{marginBig}}</div>
+<div style="display:flex;justify-content:space-between;align-items:baseline;margin-top:12px;padding-top:11px;border-top:1px solid var(--color-divider)">
+<div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--color-neutral-600)">Net per month</div>
+<div style="font-size:23px;font-variant-numeric:tabular-nums;color:{{netColor}}">{{netBig}}</div>
+</div>
+<div style="font-size:11.5px;color:var(--color-neutral-700);margin-top:8px;line-height:1.5">{{verdictSub}}</div>
+</div>
+
+<sc-if value="{{hasFigures}}" hint-placeholder-val="{{true}}">
+<div>
+<div style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:15px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px">Where every rand per km goes</div>
+<div style="display:flex;height:26px;border:1px solid var(--color-text)">
+<sc-for list="{{barSegs}}" as="s" hint-placeholder-count="6">
+<span style="display:block;width:{{s.w}};background:{{s.color}}"></span>
+</sc-for>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:3px 14px;margin-top:10px">
+<sc-for list="{{barSegs}}" as="s" hint-placeholder-count="6">
+<div style="display:flex;align-items:center;justify-content:space-between;gap:6px;font-size:11px;color:var(--color-neutral-700)">
+<span style="display:flex;align-items:center;gap:6px;min-width:0"><i style="width:9px;height:9px;flex:none;display:block;background:{{s.color}};border:1px solid rgba(0,0,0,.25)"></i><span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{s.label}}</span></span>
+<span style="font-variant-numeric:tabular-nums">{{s.perKm}}</span>
+</div>
+</sc-for>
+</div>
+</div>
+</sc-if>
+
+<sc-for list="{{flags}}" as="fl" hint-placeholder-count="1">
+<div style="border-left:3px solid {{fl.accent}};background:{{fl.bg}};padding:11px 12px;font-size:12.5px;line-height:1.5;color:{{fl.fg}}">{{fl.text}}</div>
+</sc-for>
+
+<sc-if value="{{hasFigures}}" hint-placeholder-val="{{true}}">
+<div>
+<div style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:15px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px">Monthly cash flow, one rig</div>
+<table class="table" style="font-size:13px">
+<tbody>
+<sc-for list="{{ledger}}" as="l" hint-placeholder-count="8">
+<tr>
+<td style="padding:6px 0;border-bottom:1px solid {{l.rule}};font-weight:{{l.weight}};font-size:{{l.size}}">{{l.label}}</td>
+<td style="padding:6px 0;border-bottom:1px solid {{l.rule}};text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;font-weight:{{l.weight}};font-size:{{l.size}};color:{{l.color}}">{{l.value}}</td>
+</tr>
+</sc-for>
+</tbody>
+</table>
+</div>
+</sc-if>
+
+<sc-if value="{{hasFigures}}" hint-placeholder-val="{{true}}">
+<div>
+<div style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:15px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px">Net profit if…</div>
+<table class="table" style="font-size:12px">
+<thead><tr>
+<th style="padding:5px 0">Diesel</th><th style="padding:5px 0;text-align:right">Rate −5%</th><th style="padding:5px 0;text-align:right">Rate</th><th style="padding:5px 0;text-align:right">Rate +5%</th>
+</tr></thead>
+<tbody>
+<sc-for list="{{sens}}" as="s" hint-placeholder-count="4">
+<tr>
+<td style="padding:6px 0;font-size:12px">{{s.label}}</td>
+<sc-for list="{{s.cells}}" as="c" hint-placeholder-count="3">
+<td style="padding:6px 4px;text-align:right;font-variant-numeric:tabular-nums;color:{{c.color}};background:{{c.bg}}">{{c.text}}</td>
+</sc-for>
+</tr>
+</sc-for>
+</tbody>
+</table>
+</div>
+</sc-if>
+
+<sc-if value="{{hasFigures}}" hint-placeholder-val="{{true}}">
+<div>
+<div style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:15px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px">The rest of the numbers</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--color-divider);border:1px solid var(--color-divider)">
+<sc-for list="{{metrics}}" as="m" hint-placeholder-count="10">
+<div style="background:var(--color-bg);padding:9px 11px">
+<div style="font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--color-neutral-600);line-height:1.3">{{m.k}}</div>
+<div style="font-size:15px;font-variant-numeric:tabular-nums;margin-top:2px">{{m.v}}</div>
+</div>
+</sc-for>
+</div>
+</div>
+</sc-if>
+
+<div style="display:flex;gap:8px">
+<button class="btn btn-primary" onClick="{{openShare}}" style="flex:1;height:46px;font-size:13px;letter-spacing:.07em;text-transform:uppercase">Send quote</button>
+<button class="btn btn-secondary" onClick="{{openSave}}" style="flex:1;height:46px;font-size:13px;letter-spacing:.07em;text-transform:uppercase">Save scenario</button>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{isCompare}}" hint-placeholder-val="{{false}}">
+<div style="padding:16px 16px 24px;display:flex;flex-direction:column;gap:14px">
+<div style="display:flex;gap:0;border:1px solid var(--color-divider)">
+<sc-for list="{{sortOpts}}" as="s" hint-placeholder-count="3">
+<button onClick="{{s.pick}}" style="flex:1;border:0;border-left:1px solid var(--color-divider);background:{{s.bg}};color:{{s.fg}};padding:9px 4px;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer">{{s.label}}</button>
+</sc-for>
+</div>
+<sc-for list="{{compare}}" as="c" hint-placeholder-count="5">
+<div style="border:1px solid var(--color-divider);border-left:3px solid {{c.lead}};padding:12px">
+<div style="display:flex;justify-content:space-between;gap:10px;align-items:flex-start">
+<div style="flex:1;min-width:0">
+<div style="display:flex;align-items:center;gap:7px">
+<span style="font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#9c4a0f">{{c.badge}}</span>
+</div>
+<div style="font-size:14px;font-weight:500;line-height:1.25">{{c.name}}</div>
+<div style="font-size:11px;color:var(--color-neutral-600);margin-top:3px;font-variant-numeric:tabular-nums">{{c.sub}}</div>
+</div>
+<div style="text-align:right">
+<div style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:24px;line-height:1;color:{{c.color}}">{{c.margin}}</div>
+<div style="font-size:12px;color:var(--color-neutral-700);font-variant-numeric:tabular-nums;margin-top:3px">{{c.net}}</div>
+</div>
+</div>
+<div style="display:flex;height:8px;margin-top:10px;border:1px solid var(--color-divider)">
+<span style="display:block;width:{{c.costW}};background:var(--color-accent-700)"></span>
+<span style="display:block;width:{{c.netW}};background:{{c.netFill}}"></span>
+</div>
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:10px">
+<div><div style="font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--color-neutral-600)">RPK</div><div style="font-size:13px;font-variant-numeric:tabular-nums">{{c.rpk}}</div></div>
+<div><div style="font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--color-neutral-600)">CPK</div><div style="font-size:13px;font-variant-numeric:tabular-nums">{{c.cpk}}</div></div>
+<div><div style="font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--color-neutral-600)">B/E R/t</div><div style="font-size:13px;font-variant-numeric:tabular-nums">{{c.be}}</div></div>
+<div><div style="font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--color-neutral-600)">Loads</div><div style="font-size:13px;font-variant-numeric:tabular-nums">{{c.loads}}</div></div>
+</div>
+<button class="btn btn-secondary btn-block" onClick="{{c.open}}" style="height:38px;font-size:12px;letter-spacing:.07em;text-transform:uppercase">Open docket</button>
+</div>
+</sc-for>
+</div>
+</sc-if>
+
+<sc-if value="{{isRoutes}}" hint-placeholder-val="{{false}}">
+<div style="padding:16px 16px 24px;display:flex;flex-direction:column;gap:12px">
+<sc-for list="{{routeCards}}" as="r" hint-placeholder-count="3">
+<div style="border:1px solid {{r.border}}">
+<button onClick="{{r.toggle}}" style="width:100%;text-align:left;border:0;background:{{r.bg}};padding:12px;display:flex;gap:10px;align-items:center;cursor:pointer">
+<div style="flex:1;min-width:0">
+<div style="font-size:14px;font-weight:500;line-height:1.25">{{r.name}}</div>
+<div style="font-size:11px;color:var(--color-neutral-600);margin-top:2px;font-variant-numeric:tabular-nums">{{r.sub}}</div>
+</div>
+<div style="font-family:'Barlow Condensed',sans-serif;font-size:18px;color:var(--color-neutral-600)">{{r.chev}}</div>
+</button>
+<sc-if value="{{r.open}}" hint-placeholder-val="{{false}}">
+<div style="padding:0 12px 12px;display:flex;flex-direction:column;gap:12px">
+<label style="display:flex;flex-direction:column;gap:4px">
+<span style="font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--color-neutral-600)">Route name</span>
+<input class="input" value="{{r.name}}" onChange="{{r.setName}}" style="min-height:44px;font-size:15px">
+</label>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+<label style="display:flex;flex-direction:column;gap:4px">
+<span style="font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--color-neutral-600)">Round trip (km)</span>
+<input class="input" inputmode="decimal" value="{{r.km}}" onChange="{{r.setKm}}" style="min-height:44px;font-size:16px;font-variant-numeric:tabular-nums">
+</label>
+<label style="display:flex;flex-direction:column;gap:4px">
+<span style="font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--color-neutral-600)">Tolls per trip (R)</span>
+<input class="input" inputmode="decimal" value="{{r.toll}}" onChange="{{r.setToll}}" style="min-height:44px;font-size:16px;font-variant-numeric:tabular-nums">
+</label>
+<label style="display:flex;flex-direction:column;gap:4px">
+<span style="font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--color-neutral-600)">Rate per ton (R)</span>
+<input class="input" inputmode="decimal" value="{{r.rate}}" onChange="{{r.setRate}}" style="min-height:44px;font-size:16px;font-variant-numeric:tabular-nums">
+</label>
+<label style="display:flex;flex-direction:column;gap:4px">
+<span style="font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--color-neutral-600)">Terrain</span>
+<select class="input" value="{{r.terrain}}" onChange="{{r.setTerrain}}" style="min-height:44px;font-size:14px">
+<sc-for list="{{terrainOpts}}" as="t" hint-placeholder-count="3"><option value="{{t.v}}">{{t.t}}</option></sc-for>
+</select>
+</label>
+</div>
+<div style="display:flex;gap:8px">
+<button class="btn btn-primary" onClick="{{r.openDocket}}" style="flex:1;height:42px;font-size:12px;letter-spacing:.07em;text-transform:uppercase">See docket</button>
+<button class="btn btn-secondary" onClick="{{r.remove}}" style="height:42px;padding:0 14px;font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:#a9301c">Delete</button>
+</div>
+</div>
+</sc-if>
+</div>
+</sc-for>
+<div style="display:flex;gap:8px">
+<button class="btn btn-primary" onClick="{{addRoute}}" style="flex:1;height:46px;font-size:13px;letter-spacing:.07em;text-transform:uppercase">+ Add route</button>
+<button class="btn btn-secondary" onClick="{{loadGrain}}" style="flex:1;height:46px;font-size:13px;letter-spacing:.07em;text-transform:uppercase">Add 4 blank routes</button>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{isSetup}}" hint-placeholder-val="{{false}}">
+<div style="padding:0 0 24px">
+<sc-for list="{{sections}}" as="sec" hint-placeholder-count="7">
+<div style="border-bottom:1px solid var(--color-divider)">
+<button onClick="{{sec.toggle}}" style="width:100%;border:0;background:transparent;padding:14px 16px;display:flex;align-items:center;gap:10px;cursor:pointer;text-align:left">
+<span style="width:9px;height:9px;flex:none;display:block;background:{{sec.dotFill}};border:1px solid {{sec.dotBorder}}"></span>
+<div style="flex:1;min-width:0">
+<div style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:17px;letter-spacing:.05em;text-transform:uppercase">{{sec.title}}</div>
+<div style="font-size:11.5px;color:var(--color-neutral-600);margin-top:1px;font-variant-numeric:tabular-nums">{{sec.summary}}</div>
+</div>
+<div style="font-family:'Barlow Condensed',sans-serif;font-size:18px;color:var(--color-neutral-600)">{{sec.chev}}</div>
+</button>
+<sc-if value="{{sec.open}}" hint-placeholder-val="{{false}}">
+<div style="padding:0 16px 18px;display:flex;flex-direction:column;gap:12px">
+<sc-for list="{{sec.wide}}" as="f" hint-placeholder-count="2">
+<label style="display:flex;flex-direction:column;gap:4px">
+<span style="font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--color-neutral-600)">{{f.label}}</span>
+<sc-if value="{{f.isSelect}}" hint-placeholder-val="{{true}}">
+<select class="input" value="{{f.value}}" onChange="{{f.set}}" style="min-height:44px;font-size:14px">
+<sc-for list="{{f.options}}" as="o" hint-placeholder-count="4"><option value="{{o.v}}">{{o.t}}</option></sc-for>
+</select>
+</sc-if>
+<sc-if value="{{f.isText}}" hint-placeholder-val="{{false}}">
+<input class="input" value="{{f.value}}" onChange="{{f.set}}" placeholder="{{f.ph}}" style="min-height:44px;font-size:15px">
+</sc-if>
+</label>
+</sc-for>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+<sc-for list="{{sec.fields}}" as="f" hint-placeholder-count="6">
+<label style="display:flex;flex-direction:column;gap:4px;min-width:0">
+<span style="font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--color-neutral-600);line-height:1.3">{{f.label}}</span>
+<sc-if value="{{f.isSelect}}" hint-placeholder-val="{{false}}">
+<select class="input" value="{{f.value}}" onChange="{{f.set}}" style="min-height:44px;font-size:14px">
+<sc-for list="{{f.options}}" as="o" hint-placeholder-count="3"><option value="{{o.v}}">{{o.t}}</option></sc-for>
+</select>
+</sc-if>
+<sc-if value="{{f.isNum}}" hint-placeholder-val="{{true}}">
+<div style="display:flex;align-items:stretch;border:1px solid var(--color-divider);background:var(--color-surface)">
+<sc-if value="{{f.prefix}}" hint-placeholder-val="{{false}}">
+<span style="display:flex;align-items:center;padding:0 8px;font-size:12px;color:var(--color-neutral-600);border-right:1px solid var(--color-divider)">{{f.prefix}}</span>
+</sc-if>
+<input inputmode="decimal" value="{{f.value}}" onChange="{{f.set}}" placeholder="{{f.ph}}" style="flex:1;min-width:0;border:0;background:transparent;padding:11px 9px;font-size:16px;font-variant-numeric:tabular-nums;outline:none;color:var(--color-text)">
+<sc-if value="{{f.unit}}" hint-placeholder-val="{{false}}">
+<span style="display:flex;align-items:center;padding:0 8px;font-size:11.5px;color:var(--color-neutral-600);border-left:1px solid var(--color-divider);white-space:nowrap">{{f.unit}}</span>
+</sc-if>
+</div>
+</sc-if>
+</label>
+</sc-for>
+</div>
+<sc-if value="{{sec.isRig}}" hint-placeholder-val="{{false}}">
+<p style="margin:0;font-size:11.5px;line-height:1.5;color:var(--color-neutral-700);border-left:2px solid var(--color-accent);padding-left:9px">{{rigNote}}</p>
+</sc-if>
+</div>
+</sc-if>
+</div>
+</sc-for>
+<div style="padding:16px">
+<button class="btn btn-secondary btn-block" onClick="{{openSave}}" style="height:46px;font-size:13px;letter-spacing:.07em;text-transform:uppercase">Scenarios</button>
+</div>
+</div>
+</sc-if>
+
+</div>
+
+<div style="flex:none;border-top:1px solid var(--color-divider);background:var(--color-bg);padding-bottom:4px;display:grid;grid-template-columns:repeat(4,1fr)">
+<button onClick="{{goHome}}" style="border:0;border-top:2px solid {{barHome}};background:transparent;padding:8px 0 5px;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;color:{{tabHome}}">
+<svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"></path><path d="M5 9.5V21h14V9.5"></path><path d="M9.5 21v-6h5v6"></path></svg>
+<span style="font-size:9.5px;letter-spacing:.08em;text-transform:uppercase">Board</span>
+</button>
+<button onClick="{{goSetup}}" style="border:0;border-top:2px solid {{barSetup}};background:transparent;padding:8px 0 5px;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;color:{{tabSetup}}">
+<svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18"></rect><path d="M7 7h10M7 12h10M7 17h6"></path></svg>
+<span style="font-size:9.5px;letter-spacing:.08em;text-transform:uppercase">Cost base</span>
+</button>
+<button onClick="{{goDocket}}" style="border:0;border-top:2px solid {{barDocket}};background:transparent;padding:8px 0 5px;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;color:{{tabDocket}}">
+<svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2.5" width="16" height="19"></rect><path d="M8 7h8M8 11h8M8 15h5"></path></svg>
+<span style="font-size:9.5px;letter-spacing:.08em;text-transform:uppercase">Docket</span>
+</button>
+<button onClick="{{goCompare}}" style="border:0;border-top:2px solid {{barCompare}};background:transparent;padding:8px 0 5px;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;color:{{tabCompare}}">
+<svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V9"></path><path d="M10 21V4"></path><path d="M16 21v-8"></path><path d="M22 21H2"></path></svg>
+<span style="font-size:9.5px;letter-spacing:.08em;text-transform:uppercase">Compare</span>
+</button>
+</div>
+
+<sc-if value="{{sheet}}" hint-placeholder-val="{{false}}">
+<div style="position:absolute;inset:0;z-index:80;display:flex;flex-direction:column;justify-content:flex-end;background:rgba(29,31,32,.5)">
+<div onClick="{{closeSheet}}" style="flex:1"></div>
+<div style="background:var(--color-bg);border-top:1px solid var(--color-text);padding:18px 16px 44px;display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;justify-content:space-between;align-items:baseline">
+<div style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:20px;letter-spacing:.04em;text-transform:uppercase">{{sheetTitle}}</div>
+<button class="btn btn-ghost" onClick="{{closeSheet}}" style="font-size:12px;letter-spacing:.07em;text-transform:uppercase">Close</button>
+</div>
+<sc-for list="{{sheetRows}}" as="row" hint-placeholder-count="3">
+<button onClick="{{row.act}}" style="width:100%;text-align:left;border:1px solid var(--color-divider);background:transparent;padding:13px 12px;cursor:pointer;display:flex;justify-content:space-between;gap:10px;align-items:center">
+<span style="min-width:0">
+<span style="display:block;font-size:14px;font-weight:500">{{row.title}}</span>
+<span style="display:block;font-size:11.5px;color:var(--color-neutral-600);margin-top:2px">{{row.sub}}</span>
+</span>
+<span style="font-size:16px;color:var(--color-neutral-500)">›</span>
+</button>
+</sc-for>
+<div style="font-size:11px;color:var(--color-neutral-600);line-height:1.5">{{sheetNote}}</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{toast}}" hint-placeholder-val="{{false}}">
+<div style="position:absolute;left:16px;right:16px;bottom:112px;z-index:90;background:var(--color-accent-900);color:#f2f2f3;padding:11px 13px;font-size:12.5px;line-height:1.4;border:1px solid var(--color-accent-900)">{{toast}}</div>
+</sc-if>
+
+</div>
+</x-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;460&quot;,&quot;height&quot;:&quot;930&quot;}}">
+const TRUCKS = [
+  {g:"Volvo FH", n:"FH440 (D13K)", tank:700, kmpl:2.05},
+  {g:"Volvo FH", n:"FH460 (D13K)", tank:700, kmpl:2.00},
+  {g:"Volvo FH", n:"FH480 (D13K)", tank:700, kmpl:1.98},
+  {g:"Volvo FH", n:"FH500 (D13K)", tank:700, kmpl:1.95},
+  {g:"Volvo FH", n:"FH520 (D13K)", tank:700, kmpl:1.90},
+  {g:"Scania", n:"G450 (DC13)", tank:700, kmpl:2.05},
+  {g:"Scania", n:"G460 (DC13)", tank:700, kmpl:2.00},
+  {g:"Scania", n:"G500 (DC13)", tank:700, kmpl:1.95},
+  {g:"Scania", n:"G540 (DC16 V8)", tank:700, kmpl:1.85},
+  {g:"Scania", n:"G560 (DC16 V8)", tank:800, kmpl:1.80},
+  {g:"Scania", n:"G660 (DC16 V8)", tank:800, kmpl:1.65},
+  {g:"MAN TGS", n:"TGS 440 (D26)", tank:600, kmpl:2.00},
+  {g:"MAN TGS", n:"TGS 480 (D26)", tank:600, kmpl:1.95},
+  {g:"MAN TGS", n:"TGS 510 (D26)", tank:600, kmpl:1.90},
+  {g:"MAN TGS", n:"TGS 540 (D38)", tank:780, kmpl:1.85},
+  {g:"MAN TGS", n:"TGS 640 (D38)", tank:780, kmpl:1.70},
+  {g:"UD Quester", n:"GWE 390 — 6x4 tractor, 60 t GCM", tank:400, kmpl:1.88},
+  {g:"UD Quester", n:"GWE 440 — 6x4 tractor, 60 t GCM", tank:400, kmpl:1.85},
+  {g:"UD Quester", n:"CWE 400 — 6x4 rigid, 28.5–31 t GVW", tank:400, kmpl:1.80,
+    note:"The CWE is a rigid chassis at 28.5–31 t GVW, not a truck tractor. It cannot legally pull a 34 t combination — use the GWE (60 t GCM) for this work."},
+  {g:"FAW JH6", n:"JH6 28.420FT (Weichai)", tank:400, kmpl:1.75},
+  {g:"FAW JH6", n:"JH6 28.500FT (Weichai)", tank:400, kmpl:1.70},
+  {g:"Mercedes-Benz", n:"Actros 2644 (OM471)", tank:500, kmpl:2.00},
+  {g:"Mercedes-Benz", n:"Actros 2648 (OM471)", tank:500, kmpl:1.90},
+  {g:"Mercedes-Benz", n:"Actros 2652 (OM471)", tank:700, kmpl:1.85},
+  {g:"Mercedes-Benz", n:"Actros 2655 (OM473)", tank:700, kmpl:1.75},
+  {g:"Other", n:"Other truck — enter figures manually", tank:600, kmpl:1.80}
+];
+const TRAILERS = [
+  {n:"Side tipper, 45 m³ (34 t)", pay:34, f:1.00},
+  {n:"Tautliner, 13.5 m (34 t)", pay:34, f:0.94},
+  {n:"Tautliner superlink (34 t)", pay:34, f:0.90},
+  {n:"Flat deck, 13.5 m", pay:30, f:0.97},
+  {n:"Flat deck superlink", pay:34, f:0.93},
+  {n:"Other trailer — enter figures manually", pay:34, f:1.00}
+];
+const TERRAIN = {
+  easy:{label:"Easy — flat, paved", f:1.00},
+  mod:{label:"Moderate — rolling, mixed", f:0.90},
+  hard:{label:"Difficult — steep, poor roads", f:0.82}
+};
+const COMMODITIES = ["Grain exports","Maize","Soya","Wheat","Sunflower","Fertiliser","Coal","Chrome ore","Manganese","Iron ore","Sand & aggregate","Cement","Timber","General freight","Other"];
+const GRAIN = ["Newcastle → Durban","Harrismith → Durban","Aberfeldy → Durban","Silo → Bulk terminal"]
+  .map(name => ({name, km:0, toll:0, rate:0, terrain:"easy"}));
+const EMPTY = {commodity:"",client:"",duration:"",reqTons:"",freqMode:"week",freqVal:"",days:"",
+  truck:"",trailer:"",payload:"",tank:"",tankPct:"",dprice:"",kmplBase:"",trFactor:"",
+  speed:"",tLoad:"",tOff:"",tQueue:"",tRest:"",hrsDay:"",
+  cMaint:"",cTyres:"",cLube:"",cWash:"",cPark:"",fTrip:"",
+  fDriver:"",fTruck:"",fTrailer:"",fIns:"",fLic:"",fTrack:"",fAdmin:"",
+  blCount:"",blRate:"",blTons:"",blKm:"",blToll:""};
+const ACCENT = "#5980a6", DEEP = "#416180", LOSS = "#a9301c", ORANGE = "#e0681a";
+const num = s => { const n = parseFloat(s); return isFinite(n) ? n : 0; };
+const R0 = n => (n<0?"−R":"R") + Math.abs(Math.round(n)).toLocaleString("en-ZA");
+const R2 = n => (n<0?"−R":"R") + Math.abs(n).toLocaleString("en-ZA",{minimumFractionDigits:2,maximumFractionDigits:2});
+const N = (n,d=0) => (isFinite(n)?n:0).toLocaleString("en-ZA",{minimumFractionDigits:d,maximumFractionDigits:d});
+
+class Component extends DCLogic {
+  constructor(p){
+    super(p);
+    this.state = {
+      screen: "onboard", f: {...EMPTY}, routes: [], active: 0,
+      open: {contract:true, rig:false, cycle:false, running:false, wash:false, fixed:false, back:false},
+      openRoute: 0, sheet: null, sheetKind: null, toast: "", offline: false,
+      sort: "margin", scenarios: [], dark: false
+    };
+  }
+  set(id, val){
+    const f = {...this.state.f, [id]: val};
+    if(id === "truck" && val !== ""){ const t = TRUCKS[+val]; f.kmplBase = t.kmpl.toFixed(2); f.tank = String(t.tank); }
+    if(id === "trailer" && val !== ""){ const t = TRAILERS[+val]; f.trFactor = t.f.toFixed(2); f.payload = String(t.pay); }
+    this.setState({f});
+  }
+  say(t){ this.setState({toast:t}); clearTimeout(this._t); this._t = setTimeout(()=>this.setState({toast:""}), 2600); }
+  loads(){
+    const f = this.state.f, val = num(f.freqVal), days = num(f.days);
+    if(f.freqMode === "day") return val*days;
+    if(f.freqMode === "week") return val*(days/5);
+    return val;
+  }
+  model(r, over){
+    over = over || {};
+    const f = this.state.f;
+    const dprice = "dprice" in over ? over.dprice : num(f.dprice);
+    const rate = "rate" in over ? over.rate : num(r.rate);
+    const loads = this.loads(), payload = num(f.payload), tons = loads*payload;
+    const blN = num(f.blCount);
+    const km = loads*num(r.km) + blN*num(f.blKm);
+    const kmpl = num(f.kmplBase) * (TERRAIN[r.terrain] ? TERRAIN[r.terrain].f : 1) * num(f.trFactor);
+    const litres = kmpl > 0 ? km/kmpl : 0;
+    const blRev = blN * num(f.blTons) * num(f.blRate);
+    const gross = tons*rate + blRev;
+    const fuel = litres*dprice;
+    const tolls = loads*num(r.toll) + blN*num(f.blToll);
+    const running = km*(num(f.cMaint)+num(f.cTyres)+num(f.cLube));
+    const trip = num(f.cWash)+num(f.cPark);
+    const driver = num(f.fDriver)+num(f.fTrip);
+    const fixed = num(f.fTruck)+num(f.fTrailer)+num(f.fIns)+num(f.fLic)+num(f.fTrack)+num(f.fAdmin);
+    const cost = fuel+tolls+running+trip+driver+fixed;
+    const net = gross-cost;
+    const turn = (num(f.speed)>0 ? num(r.km)/num(f.speed) : 0) + num(f.tLoad)+num(f.tOff)+num(f.tQueue)+num(f.tRest);
+    const feasible = turn>0 ? num(f.days)*num(f.hrsDay)/turn : 0;
+    const usable = num(f.tank)*num(f.tankPct)/100;
+    const tripLitres = kmpl>0 ? num(r.km)/kmpl : 0;
+    return {loads,payload,tons,km,kmpl,litres,blRev,gross,fuel,tolls,running,trip,driver,fixed,cost,net,
+      contribution: gross-fuel-tolls,
+      margin: gross ? net/gross*100 : 0,
+      rpk: km?gross/km:0, cpk: km?cost/km:0,
+      tariffPerKm: num(r.km) ? (payload*rate)/num(r.km) : 0,
+      beRate: tons ? (cost-blRev)/tons : 0,
+      beDiesel: litres ? (gross-(cost-fuel))/litres : 0,
+      turn, feasible, usable, tripLitres,
+      fillsPerTrip: usable ? tripLitres/usable : 0,
+      fillsPerMonth: usable ? litres/usable : 0,
+      range: usable*num(f.kmplBase)};
+  }
+  sections(){
+    const f = this.state.f, mk = (id,label,unit,prefix,ph) => ({
+      id, label, unit, prefix, ph: ph||"—", isNum:true, value: f[id],
+      set: e => this.set(id, e.target.value)
+    });
+    const sel = (id,label,options) => ({id,label,isSelect:true,options,value:f[id],set:e=>this.set(id,e.target.value)});
+    const txt = (id,label,ph) => ({id,label,isText:true,ph,value:f[id],set:e=>this.set(id,e.target.value)});
+    const S = [
+      {key:"contract", title:"Contract", isRig:false,
+        wide:[sel("commodity","Commodity",[{v:"",t:"Select a commodity…"}].concat(COMMODITIES.map(c=>({v:c,t:c})))),
+              txt("client","Client or contract name","Who is the load for?")],
+        fields:[mk("duration","Contract length","months"), mk("reqTons","Client tonnage","t/mo"),
+                sel("freqMode","Dispatch",[{v:"day",t:"Loads per day"},{v:"week",t:"Loads per week"},{v:"month",t:"Loads per month"}]),
+                mk("freqVal","Loads"), mk("days","Operating days","/mo")],
+        summary: (f.client||"No client") + " · " + (f.commodity||"no commodity")},
+      {key:"rig", title:"Rig & diesel", isRig:true,
+        wide:[sel("truck","Truck tractor",[{v:"",t:"Select a truck…"}].concat(TRUCKS.map((t,i)=>({v:String(i),t:t.g+" "+t.n})))),
+              sel("trailer","Trailer",[{v:"",t:"Select a trailer…"}].concat(TRAILERS.map((t,i)=>({v:String(i),t:t.n}))))],
+        fields:[mk("payload","Payload per load","t"), mk("dprice","Diesel price","/L","R"),
+                mk("tank","Tank capacity","L"), mk("tankPct","Usable","%"),
+                mk("kmplBase","Baseline consumption","km/L"), mk("trFactor","Trailer drag","×")],
+        summary: (f.truck!==""? TRUCKS[+f.truck].n : "No truck") + " · " + (f.dprice ? "R"+f.dprice+"/L" : "no diesel price")},
+      {key:"cycle", title:"Cycle time", isRig:false, wide:[],
+        fields:[mk("speed","Average road speed","km/h"), mk("hrsDay","Operating hours","h/day"),
+                mk("tLoad","Loading","h"), mk("tOff","Offloading","h"),
+                mk("tQueue","Queue & weighbridge","h"), mk("tRest","Rest & delays","h")],
+        summary: f.speed ? N(num(f.speed),0)+" km/h · "+N(num(f.hrsDay),0)+" h a day" : "Not set"},
+      {key:"running", title:"Running costs", isRig:false, wide:[],
+        fields:[mk("cMaint","Maintenance","/km","R"), mk("cTyres","Tyres","/km","R"), mk("cLube","Oils & consumables","/km","R")],
+        summary: "R"+N(num(f.cMaint)+num(f.cTyres)+num(f.cLube),2)+" per km"},
+      {key:"wash", title:"Wash, parking & allowances", isRig:false, wide:[],
+        fields:[mk("cWash","Truck wash","/mo","R"), mk("cPark","Parking","/mo","R"), mk("fTrip","Driver trip allowance","/mo","R")],
+        summary: R0(num(f.cWash)+num(f.cPark)+num(f.fTrip))+" a month"},
+      {key:"fixed", title:"Fixed costs", isRig:false, wide:[],
+        fields:[mk("fDriver","Driver salary","","R"), mk("fTruck","Truck instalment","","R"),
+                mk("fTrailer","Trailer instalment","","R"), mk("fIns","Insurance","","R"),
+                mk("fLic","Licensing","","R"), mk("fTrack","Tracking","","R"), mk("fAdmin","Admin & overheads","","R")],
+        summary: R0(num(f.fDriver)+num(f.fTruck)+num(f.fTrailer)+num(f.fIns)+num(f.fLic)+num(f.fTrack)+num(f.fAdmin))+" a month"},
+      {key:"back", title:"Backloads", isRig:false, wide:[],
+        fields:[mk("blCount","Backloads","/mo"), mk("blRate","Rate per ton","","R"),
+                mk("blTons","Payload","t"), mk("blKm","Extra distance","km"), mk("blToll","Extra tolls","R")],
+        summary: num(f.blCount) ? N(num(f.blCount),0)+" a month" : "None secured"}
+    ];
+    return S.map(s => ({...s, open: !!this.state.open[s.key], chev: this.state.open[s.key] ? "–" : "+",
+      dotFill: s.wide.concat(s.fields).every(x => String(x.value || "").trim() !== "") ? "#5980a6" : "transparent",
+      dotBorder: s.wide.concat(s.fields).every(x => String(x.value || "").trim() !== "") ? "#5980a6" : "rgba(29,31,32,.3)",
+      toggle: () => this.setState({open:{...this.state.open, [s.key]: !this.state.open[s.key]}})}));
+  }
+  render_(){ }
+  renderVals(){
+    const st = this.state, f = st.f;
+    const screen = st.screen;
+    const routes = st.routes;
+    const has = routes.length > 0;
+    const active = Math.min(st.active, Math.max(0, routes.length-1));
+    const r = has ? routes[active] : null;
+    const m = r ? this.model(r) : null;
+    const titles = {onboard:"Route costing", home:"The board", docket:"Docket", compare:"Compare routes", routes:"Routes", setup:"Cost base"};
+    const all = routes.map((rr,i)=>({i, r:rr, m:this.model(rr)}));
+    const ranked = all.slice().sort((a,b)=>b.m.net-a.m.net);
+    const D = st.dark;
+    const INK = D ? "#eceff1" : "#1d1f20";
+    const HAIR = D ? "rgba(236,239,241,.14)" : "rgba(29,31,32,.08)";
+    const HARD = D ? "rgba(236,239,241,.45)" : "rgba(29,31,32,.45)";
+    const TINT = {orange: D ? "rgba(224,104,26,.18)" : "#fdf3e9", steel: D ? "rgba(89,128,166,.22)" : "#eef6ff",
+      red: D ? "rgba(169,48,28,.22)" : "#f8ecea", flat: D ? "rgba(236,239,241,.07)" : "#f5f5f8"};
+    const ONTINT = {orange: D ? "#f0a165" : "#7a3d06", steel: D ? "#bdd8f2" : "#2c455d",
+      red: D ? "#e79b8d" : "#7a2417", flat: D ? "#c3c7ca" : "#5d5d60"};
+    const tab = s => screen === s ? ACCENT : (D ? "#9fa3a6" : "#7a7a7d");
+    const v = {
+      screenTitle: titles[screen] || "Route costing",
+      isOnboarding: screen === "onboard", isHome: screen === "home", isDocket: screen === "docket",
+      isCompare: screen === "compare", isRoutes: screen === "routes", isSetup: screen === "setup",
+      offline: st.offline, toast: st.toast,
+      isDark: st.dark, isLight: !st.dark, shellClass: st.dark ? "amara-dark" : "",
+      themeLabel: st.dark ? "Switch to lite mode" : "Switch to dark mode",
+      clearAll: () => this.setState({
+        sheet:{title:"Clear everything?", note:"This wipes the cost base and every route on this phone. Saved scenarios are not touched.", rows:[
+          {title:"Yes, clear it all", sub:"Start a fresh costing from empty", act:()=>{
+            this.setState({f:{...EMPTY}, routes:[], active:0, openRoute:-1, sheet:null, screen:"setup"}); this.say("Cleared. Every field is empty again."); }},
+          {title:"Clear the routes only", sub:"Keep the cost base as entered", act:()=>{
+            this.setState({routes:[], active:0, openRoute:-1, sheet:null}); this.say("Routes cleared."); }}
+        ]}}),
+      toggleTheme: () => { this.setState({dark: !st.dark}); this.say(st.dark ? "Lite mode." : "Dark mode — easier in the cab at night."); },
+      tabHome: tab("home"), tabDocket: tab("docket"), tabCompare: tab("compare"), tabSetup: tab("setup"),
+      barHome: screen === "home" ? ORANGE : "transparent", barDocket: screen === "docket" ? ORANGE : "transparent",
+      barCompare: screen === "compare" ? ORANGE : "transparent",
+      barSetup: (screen === "setup" || screen === "routes") ? ORANGE : "transparent",
+      goHome: () => this.setState({screen:"home"}), goDocket: () => this.setState({screen:"docket"}),
+      goCompare: () => this.setState({screen:"compare"}), goSetup: () => this.setState({screen:"setup"}),
+      goRoutes: () => this.setState({screen:"routes"}),
+      startDemo: () => this.setState({f:{...EMPTY}, routes: GRAIN.map(x=>({...x})), active:0, openRoute:0, screen:"routes"}),
+      startBlank: () => this.setState({f:{...EMPTY}, routes:[{name:"New route", km:0, toll:0, rate:0, terrain:"easy"}], active:0, screen:"setup", open:{...this.state.open, contract:true}}),
+      addRoute: () => { const rs = routes.concat([{name:"New route", km:0, toll:0, rate:0, terrain:"easy"}]);
+        this.setState({routes:rs, active:rs.length-1, openRoute:rs.length-1, screen:"routes"}); },
+      loadGrain: () => { this.setState({routes: GRAIN.map(x=>({...x})), active:0, openRoute:0}); this.say("Four blank routes added — fill in km, tolls and rate."); },
+      sections: this.sections(),
+      rigNote: f.truck === "" ? "Pick a truck and trailer to load their consumption baseline and tank size, or type your own figures in."
+        : (TRUCKS[+f.truck].note ? "⚠ " + TRUCKS[+f.truck].note + " " : "") +
+          "Baseline " + TRUCKS[+f.truck].kmpl.toFixed(2) + " km/L on easy terrain. Typical fitted tank " + TRUCKS[+f.truck].tank + " L — confirm on the build sheet.",
+      terrainOpts: Object.keys(TERRAIN).map(k=>({v:k, t:TERRAIN[k].label})),
+      routeCount: routes.length === 1 ? "1 route" : routes.length + " routes",
+      dieselPrice: f.dprice ? "R"+N(num(f.dprice),2)+"/L" : "—",
+      rigName: f.truck !== "" ? TRUCKS[+f.truck].n : "Not set",
+      clientName: f.client || "Not set",
+      sheet: !!st.sheet, sheetTitle: st.sheet ? st.sheet.title : "", sheetRows: st.sheet ? st.sheet.rows : [],
+      sheetNote: st.sheet ? st.sheet.note : "",
+      closeSheet: () => this.setState({sheet:null}),
+      openShare: () => this.setState({sheet:{title:"Send this quote", note:"The docket goes out as a one-page PDF with the rig, the routes and the rate — never the cost base.", rows:[
+        {title:"WhatsApp to the client", sub:"PDF docket + a one-line summary", act:()=>{this.setState({sheet:null}); this.say("Docket shared to WhatsApp.");}},
+        {title:"Email a PDF", sub:"Attaches the full route comparison", act:()=>{this.setState({sheet:null}); this.say("PDF queued — sends when you are back on signal.");}},
+        {title:"Copy the numbers", sub:"Rate, margin and break-even as text", act:()=>{this.setState({sheet:null}); this.say("Figures copied.");}}
+      ]}}),
+      openSave: () => this.setState({sheet:{title:"Scenarios", note: st.offline ? "Saved on this phone. They sync when signal comes back." : "Scenarios are kept on this phone and synced to the office.", rows:[
+        {title:"Save this scenario", sub:(f.client||"Untitled")+" · "+routes.length+" routes", act:()=>{
+          const s = st.scenarios.concat([{name:(f.client||"Untitled")+" · "+new Date().toLocaleDateString("en-ZA"), f:{...f}, routes:routes.map(x=>({...x}))}]);
+          this.setState({scenarios:s, sheet:null}); this.say("Scenario saved."); }},
+        {title:"Load a saved scenario", sub: st.scenarios.length ? st.scenarios.length+" saved" : "Nothing saved yet", act:()=>{
+          const last = st.scenarios[st.scenarios.length-1];
+          if(!last){ this.setState({sheet:null}); this.say("No saved scenarios yet."); return; }
+          this.setState({f:{...last.f}, routes:last.routes.map(x=>({...x})), active:0, sheet:null}); this.say("Loaded “"+last.name+"”."); }},
+        {title: st.offline ? "Go back online" : "Work offline", sub: st.offline ? "Reconnect and sync" : "Keep costing with no signal", act:()=>{
+          this.setState({offline:!st.offline, sheet:null}); this.say(st.offline ? "Back online — scenarios synced." : "Offline. Everything still works."); }}
+      ]}})
+    };
+    const isBare = (mm, rr) => mm.loads === 0 || mm.cost === 0 ||
+      (rr ? (num(rr.km) === 0 || num(rr.rate) === 0) : mm.gross === 0);
+    const CIRC = 2*Math.PI*48;
+    const peakNet = Math.max(1, ...all.map(x=>Math.abs(x.m.net)));
+    const filled = ["contract","rig","cycle","running","wash","fixed","back"].map(k=>{
+      const ids = {contract:["commodity","client","duration","reqTons","freqVal","days"],
+        rig:["truck","trailer","payload","dprice","tank","tankPct","kmplBase","trFactor"],
+        cycle:["speed","hrsDay","tLoad","tOff","tQueue","tRest"],
+        running:["cMaint","cTyres","cLube"], wash:["cWash","cPark","fTrip"],
+        fixed:["fDriver","fTruck","fTrailer","fIns","fLic","fTrack","fAdmin"],
+        back:["blCount","blRate","blTons","blKm","blToll"]}[k];
+      return ids.every(id => String(f[id] || "").trim() !== "");
+    });
+    const done = filled.filter(Boolean).length;
+    v.setupTicks = filled.map(ok=>({fill: ok ? ACCENT : "transparent", border: ok ? ACCENT : (D ? "rgba(236,239,241,.3)" : "rgba(29,31,32,.18)")}));
+    v.setupLabel = done + " of 7";
+    v.setupCta = done === 7 ? "Review the cost base" : "Finish the cost base";
+    v.loadsLabel = this.loads() ? N(this.loads(),1) : "—";
+    v.ranked = ranked.slice(0,5).map((x,i)=>({
+      rank: i+1, name: x.r.name || "Untitled route",
+      sub: isBare(x.m, x.r) ? "Figures incomplete" : N(x.m.km,0)+" km/mo · "+N(x.m.loads,1)+" loads · R"+N(x.m.cpk,2)+"/km",
+      margin: isBare(x.m, x.r) ? "—" : N(x.m.margin,1)+"%",
+      net: isBare(x.m, x.r) ? "" : R0(x.m.net)+" net",
+      color: isBare(x.m, x.r) ? "#7a7a7d" : (x.m.net < 0 ? LOSS : DEEP),
+      barW: isBare(x.m, x.r) ? "0%" : Math.min(100, Math.abs(x.m.net)/peakNet*100)+"%",
+      bg: (i === 0 && !isBare(x.m, x.r)) ? TINT.orange : "transparent",
+      lead: (i === 0 && !isBare(x.m, x.r)) ? ORANGE : "transparent",
+      barFill: isBare(x.m, x.r) ? "transparent" : (x.m.net < 0 ? LOSS : (i === 0 ? ORANGE : ACCENT)),
+      open: () => this.setState({active:x.i, screen:"docket"})
+    }));
+    if(has){
+      const best = ranked[0], bareBest = isBare(best.m, best.r);
+      v.bestName = bareBest ? (best.r.name || "Untitled route") + " — awaiting figures" : (best.r.name || "Untitled route");
+      v.bestMargin = bareBest ? "—" : N(best.m.margin,1)+"%";
+      v.bestNet = bareBest ? "—" : R0(best.m.net);
+      v.bestColor = bareBest ? "#7a7a7d" : (best.m.net < 0 ? LOSS : DEEP);
+      v.gaugeColor = bareBest ? "#c9c9cc" : (best.m.net < 0 ? LOSS : ORANGE);
+      v.bestCpk = bareBest ? "—" : "R"+N(best.m.cpk,2);
+      v.gaugeDash = bareBest ? "0 "+CIRC.toFixed(1)
+        : (CIRC*Math.max(0, Math.min(100, best.m.margin))/100).toFixed(1)+" "+CIRC.toFixed(1);
+    } else {
+      v.bestName = "No routes yet"; v.bestMargin = "—"; v.bestNet = "—"; v.bestColor = "#7a7a7d"; v.bestCpk = "—";
+      v.gaugeDash = "0 "+CIRC.toFixed(1); v.gaugeColor = "#c9c9cc";
+    }
+    v.routeTabs = routes.map((rr,i)=>({
+      name: (rr.name || "Untitled").split(" ")[0], pick: () => this.setState({active:i}),
+      bg: i === active ? ACCENT : "transparent", fg: i === active ? "#f2f2f3" : INK,
+      border: i === active ? ACCENT : "rgba(29,31,32,.16)"
+    }));
+    v.routeCards = routes.map((rr,i)=>({
+      name: rr.name, km: rr.km || "", toll: rr.toll || "", rate: rr.rate || "", terrain: rr.terrain,
+      sub: (num(rr.km) || num(rr.rate)) ? N(num(rr.km),0)+" km · R"+N(num(rr.toll),0)+" tolls · R"+N(num(rr.rate),0)+"/t" : "Tap to enter km, tolls and rate",
+      open: st.openRoute === i, chev: st.openRoute === i ? "–" : "+",
+      border: st.openRoute === i ? ACCENT : "rgba(29,31,32,.16)",
+      bg: st.openRoute === i ? TINT.steel : "transparent",
+      toggle: () => this.setState({openRoute: st.openRoute === i ? -1 : i, active:i}),
+      openDocket: () => this.setState({active:i, screen:"docket"}),
+      remove: () => { const rs = routes.slice(); rs.splice(i,1); this.setState({routes:rs, active:0, openRoute:-1}); },
+      setName: e => this.upd(i,"name",e.target.value),
+      setKm: e => this.upd(i,"km",parseFloat(e.target.value)||0),
+      setToll: e => this.upd(i,"toll",parseFloat(e.target.value)||0),
+      setRate: e => this.upd(i,"rate",parseFloat(e.target.value)||0),
+      setTerrain: e => this.upd(i,"terrain",e.target.value)
+    }));
+    const sortKeys = [["margin","Margin"],["net","Net"],["cpk","Cost/km"]];
+    v.sortOpts = sortKeys.map(([k,label])=>({
+      label, bg: st.sort === k ? ACCENT : "transparent", fg: st.sort === k ? "#f2f2f3" : INK,
+      pick: () => this.setState({sort:k})
+    }));
+    const sorted = all.slice().sort((a,b)=> st.sort === "cpk" ? a.m.cpk-b.m.cpk : (st.sort === "margin" ? b.m.margin-a.m.margin : b.m.net-a.m.net));
+    v.compare = sorted.map((x,idx)=>{
+      const g = Math.max(x.m.gross, 1);
+      const b = isBare(x.m, x.r);
+      const costPct = b ? 0 : Math.max(0, Math.min(100, x.m.cost/g*100));
+      return {
+        name: x.r.name || "Untitled route",
+        sub: b ? "No figures entered yet" : N(x.m.km,0)+" km · "+N(x.m.litres,0)+" L · "+R0(x.m.gross)+" gross",
+        margin: b ? "—" : N(x.m.margin,1)+"%", net: b ? "" : R0(x.m.net)+" net",
+        color: b ? "#7a7a7d" : (x.m.net<0 ? LOSS : DEEP),
+        costW: b ? "0%" : costPct+"%", netW: b ? "0%" : (100-costPct)+"%", netFill: x.m.net<0 ? LOSS : ORANGE,
+        lead: (idx === 0 && !b) ? ORANGE : "transparent",
+        badge: (idx === 0 && !b) ? "Best" : "",
+        rpk: b ? "—" : "R"+N(x.m.rpk,2), cpk: b ? "—" : "R"+N(x.m.cpk,2),
+        be: b ? "—" : "R"+N(x.m.beRate,0), loads: b ? "—" : N(x.m.feasible,1),
+        open: () => this.setState({active:x.i, screen:"docket"})
+      };
+    });
+    if(m){
+      const bare = isBare(m, r);
+      v.verdictLabel = (r.name || "Untitled route") + " — margin";
+      v.marginBig = bare ? "—" : N(m.margin,1)+"%";
+      v.netBig = bare ? "—" : R0(m.net);
+      v.netColor = bare ? "#7a7a7d" : (m.net<0 ? LOSS : DEEP);
+      v.hasFigures = !bare;
+      v.verdictSub = bare ? "Enter this route's km and rate, plus the cost base, to see the verdict."
+        : R2(m.net/(m.loads||1))+" per load · "+R0(m.gross)+" gross"
+          + (num(f.duration) ? " · "+R0(m.net*num(f.duration))+" over "+N(num(f.duration),0)+" months" : "");
+      const ramp = D ? ["#f5f5f8","#d4d4d7","#b7b7ba","#98989b","#7a7a7d","#5d5d60"]
+                     : ["#2b2b2d","#424244","#5d5d60","#98989b","#b7b7ba","#e7e7ea"];
+      const segs = [["Diesel",m.fuel,ramp[0]],["Tolls",m.tolls,ramp[1]],["Maintenance & tyres",m.running,ramp[2]],
+        ["Wash & parking",m.trip,ramp[3]],["Driver",m.driver,ramp[4]],["Instalments & admin",m.fixed,ramp[5]]];
+      const scale = Math.max(m.rpk, m.cpk) || 1;
+      v.barSegs = bare ? [] : segs.map(([label,val,color])=>{
+        const pk = m.km ? val/m.km : 0;
+        return {label, color, w: (pk/scale*100)+"%", perKm: "R"+N(pk,2)};
+      });
+      const marg = m.rpk-m.cpk;
+      if(!bare) v.barSegs.push({label: marg>=0 ? "Margin" : "Shortfall", color: marg>=0 ? ORANGE : LOSS,
+        w: (Math.abs(marg)/scale*100)+"%", perKm: "R"+N(Math.abs(marg),2)});
+      const rule = HAIR, hard = HARD;
+      const L = [];
+      L.push({label:(f.commodity||"Freight")+" ("+N(m.tons,0)+" t × "+R0(num(r.rate))+"/t)", value:R0(m.gross-m.blRev), rule, weight:400, size:"13px", color:"inherit"});
+      if(m.blRev) L.push({label:"Backload revenue", value:R0(m.blRev), rule, weight:400, size:"13px", color:"inherit"});
+      L.push({label:"Gross revenue", value:R0(m.gross), rule:hard, weight:600, size:"14px", color:"inherit"});
+      L.push({label:"Diesel ("+N(m.litres,0)+" L)", value:"−"+R0(m.fuel), rule, weight:400, size:"13px", color:LOSS});
+      L.push({label:"Tolls ("+N(m.loads,0)+" trips)", value:"−"+R0(m.tolls), rule, weight:400, size:"13px", color:LOSS});
+      L.push({label:"After diesel & tolls", value:R0(m.contribution), rule:hard, weight:600, size:"13px", color:"inherit"});
+      L.push({label:"Maintenance, tyres & oils", value:"−"+R0(m.running), rule, weight:400, size:"13px", color:LOSS});
+      L.push({label:"Wash & parking", value:"−"+R0(m.trip), rule, weight:400, size:"13px", color:LOSS});
+      L.push({label:"Driver & trip allowance", value:"−"+R0(m.driver), rule, weight:400, size:"13px", color:LOSS});
+      L.push({label:"Instalments, insurance, admin", value:"−"+R0(m.fixed), rule, weight:400, size:"13px", color:LOSS});
+      L.push({label:"Net profit before tax", value:R0(m.net), rule:hard, weight:600, size:"16px", color: m.net<0 ? LOSS : DEEP});
+      v.ledger = bare ? [] : L;
+      const grid = [0.9,1,1.1,1.2].map(dm => [0.95,1,1.05].map(rm =>
+        this.model(r,{dprice:num(f.dprice)*dm, rate:num(r.rate)*rm}).net));
+      const peak = Math.max(1, ...grid.flat().map(Math.abs));
+      v.sens = bare ? [] : ["Diesel −10%","Diesel as entered","Diesel +10%","Diesel +20%"].map((label,i)=>({
+        label, cells: grid[i].map(n=>({
+          text: R0(n), color: n<0 ? LOSS : "inherit",
+          bg: n<0 ? "rgba(169,48,28,"+(0.06+0.20*Math.abs(n)/peak).toFixed(2)+")"
+                  : "rgba(89,128,166,"+(0.04+0.22*Math.abs(n)/peak).toFixed(2)+")"
+        }))
+      }));
+      const rigs = m.tons>0 ? Math.ceil(num(f.reqTons)/m.tons) : 0;
+      v.metrics = [
+        ["Loads per month", N(m.loads,1)], ["Tonnage moved", N(m.tons,0)+" t"],
+        ["Total distance", N(m.km,0)+" km"], ["Diesel used", N(m.litres,0)+" L"],
+        ["Effective consumption", N(m.kmpl,2)+" km/L"], ["Turnaround per trip", N(m.turn,1)+" h"],
+        ["Litres per round trip", N(m.tripLitres,0)+" L"], ["Range on a tank", N(m.range,0)+" km"],
+        ["Revenue per km", "R"+N(m.rpk,2)], ["Cost per km", "R"+N(m.cpk,2)],
+        ["Rate per km (tariff)", "R"+N(m.tariffPerKm,2)], ["Cost per ton", "R"+N(m.tons?m.cost/m.tons:0,2)],
+        ["Break-even rate/ton", "R"+N(m.beRate,2)], ["Break-even diesel", "R"+N(m.beDiesel,2)+"/L"],
+        ["Contract value, "+N(num(f.duration),0)+" mo", num(f.duration) ? R0(m.gross*num(f.duration)) : null],
+        ["Rigs for "+N(num(f.reqTons),0)+" t/mo", num(f.reqTons) ? N(rigs,0) : null]
+      ].filter(x=>x[1] !== null).map(([k,val])=>({k, v:val}));
+      if(bare) v.metrics = [];
+      const flags = [];
+      if(bare){
+        flags.push({accent:"#7a7a7d", bg:TINT.flat, fg:ONTINT.flat,
+          text:"Not enough entered yet. This route needs its km and rate per ton, and the cost base needs the dispatch frequency, operating days and the cost sections — then the feasibility, tank and break-even checks appear here."});
+      } else if(m.loads > m.feasible+0.05){
+        flags.push({accent:ORANGE, bg:TINT.orange, fg:ONTINT.orange,
+          text:"A "+N(m.turn,1)+" h turnaround over "+N(num(f.days),0)+" days at "+N(num(f.hrsDay),0)+" h a day supports about "+N(m.feasible,1)+" loads, not the "+N(m.loads,1)+" planned. Add a second driver, cut queue time, or lower the load count."});
+      } else {
+        flags.push({accent:ACCENT, bg:TINT.steel, fg:ONTINT.steel,
+          text:"Cycle time works: "+N(m.turn,1)+" h per trip supports up to "+N(m.feasible,1)+" loads a month against "+N(m.loads,1)+" planned."});
+      }
+      if(!bare && m.fillsPerTrip > 1) flags.push({accent:ORANGE, bg:TINT.orange, fg:ONTINT.orange,
+        text:"One tank does not cover the round trip: "+N(m.range,0)+" km of range against "+N(num(r.km),0)+" km. Budget "+N(Math.ceil(m.fillsPerTrip),0)+" fills and plan a refuelling point."});
+      if(!bare && m.net < 0) flags.push({accent:LOSS, bg:TINT.red, fg:ONTINT.red,
+        text:"This route loses money on full cost of operation. It needs R"+N(m.beRate,2)+" per ton to break even, against the R"+N(num(r.rate),2)+" on offer."});
+      v.flags = flags;
+    } else {
+      v.verdictLabel = "No route selected"; v.marginBig = "—"; v.netBig = "—"; v.netColor = "#7a7a7d";
+      v.hasFigures = false;
+      v.verdictSub = "Add a route to see the numbers."; v.barSegs = []; v.ledger = []; v.sens = []; v.metrics = []; v.flags = [];
+    }
+    return v;
+  }
+  upd(i, k, val){
+    const rs = this.state.routes.slice();
+    rs[i] = {...rs[i], [k]: val};
+    this.setState({routes: rs});
+  }
+}
+</script>
+</body>
+</html>
